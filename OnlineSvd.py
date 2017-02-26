@@ -50,7 +50,9 @@ print Vq.shape
 
 
 BigMat = np.dot(Up,np.dot(K,np.transpose(Vq)))
-print np.linalg.matrix_rank(BigMat)
+print "Rank", np.linalg.matrix_rank(BigMat)
 
 
+#Test whether our code is correct or not
+print BigMat
 print a + np.dot(A,np.transpose(B))
