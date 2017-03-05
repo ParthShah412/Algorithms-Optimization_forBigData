@@ -1,17 +1,8 @@
 import numpy as np
-
-a = np.random.randint(1,11,size=(15,10))
-print a
-
-U, s, V = np.linalg.svd(a,full_matrices=True)
-
-S = np.zeros((15,10),dtype=np.float64)
-S[:10,:10] = np.diag(s)
+from MatFunc import MatFunc
 
 
-Sn = S[:3,:3]
-Un = U[:,:3]
-Vn = V[:3,:]
+a,Sn,Un,Vn = MatFunc()
 
 A = np.random.randint(1,11,size=(15,4))
 B = np.random.randint(1,11,size=(10,4))
@@ -50,9 +41,16 @@ print Vq.shape
 
 
 BigMat = np.dot(Up,np.dot(K,np.transpose(Vq)))
-print "Rank", np.linalg.matrix_rank(BigMat)
+#print np.linalg.matrix_rank(BigMat)
 
-
-#Test whether our code is correct or not
 print BigMat
-print a + np.dot(A,np.transpose(B))
+
+New_a = a + np.dot(A,np.transpose(B))
+
+print New_a
+
+ErrMat = New_a - BigMat
+
+print ErrMat
+
+print np.linalg.norm(ErrMat)
